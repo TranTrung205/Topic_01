@@ -23,7 +23,7 @@ public class TOPIC_5 {
 
 	}
 
-	@Test() // Login Empty
+	@Test(enabled=false) 
 	public void TC_00_Combobox() throws Exception {
 		driver.navigate().to("http://daominhdam.890m.com/#");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -38,7 +38,7 @@ public class TOPIC_5 {
 
 	}
 
-	@Test(enabled=false) // Login Empty
+	@Test(enabled=false) 
 	public void TC_01() {
 		driver.navigate().to("http://daominhdam.890m.com/#");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -53,7 +53,7 @@ public class TOPIC_5 {
 
 	}
 
-	@Test(enabled=false) // Login Empty
+	@Test(enabled=false)
 	public void TC_02() {
 		driver.get("http://demos.telerik.com/kendo-ui/styling/checkboxes");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -79,6 +79,21 @@ public class TOPIC_5 {
 			System.out.println("checkbox is checked");
 	}
 
+	@Test
+	public void TC_03() throws InterruptedException {
+		driver.get("http://demos.telerik.com/kendo-ui/styling/radios");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		
+	WebElement carEngine = driver.findElement(By.xpath("//*[contains(text(),'2.0 Petrol, 147kW')]"));
+	/*JavascriptExecutor executor = (JavascriptExecutor)driver;
+	executor.executeScript("arguments[0].click();", carEngine);*/
+	if (carEngine.isSelected() == false)
+		carEngine.click();
+	Thread.sleep(5000);		
+	}
+	
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
