@@ -122,6 +122,7 @@ public class TOPIC_01 {
 	WebElement thankyouMessage = driver.findElement(By.xpath("//*[contains(text(),'Thank you for registering with Main Website Store.')]"));
 	String mess = thankyouMessage.getText();
 	Assert.assertEquals("Thank you for registering with Main Website Store.", mess);
+	
 	}
 	//
 	@AfterClass
