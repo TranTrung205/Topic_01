@@ -3,6 +3,7 @@ package Func1;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.james.mime4j.message.Message;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class TOPIC_01 {
 	
 	}
 
-	@Test //Login Empty
+	@Test (enabled = false) //Login Empty
 	public void TC_01() {
 		driver.get("http://live.guru99.com/");
 		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
@@ -42,7 +43,7 @@ public class TOPIC_01 {
 		Assert.assertEquals("This is a required field.", err1);
 	}
 
-	@Test  //Login with email invalid
+	@Test (enabled = false) //Login with email invalid
 	public void TC_02() {
 		driver.get("http://live.guru99.com/");
 		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
@@ -65,7 +66,7 @@ public class TOPIC_01 {
 	}
 
 
-	@Test //Login with Password incorrect
+	@Test(enabled=false) //Login with Password incorrect
 	public void TC_03() {
 		driver.get("http://live.guru99.com/");
 		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
@@ -87,7 +88,7 @@ public class TOPIC_01 {
 		Assert.assertEquals("Please enter 6 or more characters without leading or trailing spaces.", errPassword);
 	}
 
-	@Test //Create an account
+	@Test (enabled = false) //Create an account
 	public void TC_04() {
 	WebElement accountCreate = driver.findElement(By.xpath("//*[@title='Create an Account']"));
 	accountCreate.click();
@@ -124,7 +125,56 @@ public class TOPIC_01 {
 	Assert.assertEquals("Thank you for registering with Main Website Store.", mess);
 	
 	}
-	//
+	
+	@Test //Order a product successfully
+	public void TC_05() {
+		driver.get("http://live.guru99.com/index.php/customer/account/");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		WebElement accountLink = driver.findElement(By.xpath("//*[@class='footer']//*[contains(text(),'My Account')]"));
+		accountLink.click();
+		
+		WebElement username = driver.findElement(By.xpath("//input[@id='email']"));
+		username.sendKeys("smartphone8888@gmail.com");
+		
+		WebElement password = driver.findElement(By.xpath("//*[@id='pass']"));
+		password.sendKeys("123456");
+		
+		WebElement buttonLogin = driver.findElement(By.xpath("//*[@id='send2']"));
+		buttonLogin.click();
+		
+		WebElement mobileButton = driver.findElement(By.xpath("//*[@id='nav']//*[text()='Mobile']"));
+		mobileButton.click();
+		
+		WebElement addtoCartSSGalaxy = driver.findElement(By.xpath("//*[@title='Samsung Galaxy']//following-sibling::div//*[@class='button btn-cart']"));
+		addtoCartSSGalaxy.click();
+		
+		WebElement messageSSGalaxy = driver.findElement(By.xpath("//*[@class='success-msg']//*[contains(text(),'Samsung Galaxy was added to your shopping cart.')]"));
+		String mess1 = messageSSGalaxy.getText() ;
+		Assert.assertEquals("Samsung Galaxy was added to your shopping cart.", mess1);
+		
+		WebElement discountCode = driver.findElement(By.xpath("//*[@id='coupon_code']"));
+		discountCode.sendKeys("GURU50");
+		
+		WebElement applyButton = driver.findElement(By.xpath("//*[@title='Apply']"));
+		applyButton.click();
+		
+		WebElement messageGuru = driver.findElement(By.xpath("//*[@class='success-msg']//*[contains(text(),'Coupon code \"GURU50\" was applied')]"));
+		String mess2 = messageGuru.getText() ;
+		Assert.assertEquals("Coupon code \"GURU50\" was applied.", mess2);
+		
+		/*WebElement grandTotal = driver.findElement(By.xpath("//*[@class='price']"));
+		String total = grandTotal.getText();
+		Assert.assertEquals("$130.00", total);*/
+		
+	/*	WebElement numberOfItem = driver.findElement(By.xpath("//*[@name='cart[69674][qty]']"));
+		String item = numberOfItem.getText();
+		Assert.assertEquals(actual, item);*/
+		
+		WebElement emptyCart = driver.findElement(By.xpath("//*[@id='empty_cart_button']"));
+		emptyCart.click();
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
