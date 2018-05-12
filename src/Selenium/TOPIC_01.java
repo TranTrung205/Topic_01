@@ -243,6 +243,7 @@ public class TOPIC_01 extends CommonFunctions {
 		clickToElements(driver, "//*[@id='form-validate']//*[@title='Register']");
 		Assert.assertEquals("Thank you for registering with Main Website Store.", getTextElements(driver, "//*[contains(text(),'Thank you for registering with Main Website Store.')]"));
 		//TC_06
+		
 }
 	
 	
