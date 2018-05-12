@@ -1,7 +1,7 @@
 package Selenium;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -216,7 +216,7 @@ public class TOPIC_01 extends CommonFunctions {
 		
 //		WebElement numberOfItem = driver.findElement(By.xpath("//*[@id='shopping-cart-table']/input"));
 //		String item = numberOfItem.getText();
-		Assert.assertEquals("1", getTextElements(driver, "[//input[contains(@title,'Qty')]"));
+		Assert.assertEquals("1", getAtribute(driver, "//input[contains(@title,'Qty')]", "value"));
 		Thread.sleep(3000);
 //		WebElement emptyCart = driver.findElement(By.xpath("//*[@id='empty_cart_button']"));
 //		emptyCart.click();
@@ -243,6 +243,9 @@ public class TOPIC_01 extends CommonFunctions {
 		clickToElements(driver, "//*[@id='form-validate']//*[@title='Register']");
 		Assert.assertEquals("Thank you for registering with Main Website Store.", getTextElements(driver, "//*[contains(text(),'Thank you for registering with Main Website Store.')]"));
 		//TC_06
+//		WebElement mobileTab = driver.findElement(By.xpath("//*[@id='nav']//*[text()='Mobile']"));
+//		mobileTab.click();
+		clickToElements(driver, "//*[@id='nav']//*[text()='Mobile']");
 		
 }
 	

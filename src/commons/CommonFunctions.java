@@ -3,6 +3,7 @@ package commons;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -49,6 +50,10 @@ public class CommonFunctions {
 		return element.getFirstSelectedOption().getText();
 	}
 	
+	public String getAtribute(WebDriver driver, String locator, String attribute) {
+		  WebElement element = driver.findElement(By.xpath(locator));
+		  return element.getAttribute(attribute);
+		 }
 	public String getCurrentUrl(WebDriver driver) {
 		return driver.getCurrentUrl();
 	}
@@ -111,6 +116,52 @@ public class CommonFunctions {
 	public void switchToDefaultContent(WebDriver driver) {
 		driver.switchTo().defaultContent();
 	}
+	
+	/* ********************ALERT******************** */
+	public void switchToAlert(WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+	}
+	public String getTextAlert(WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		return alert.getText();
+	}
+	
+	public void acceptAlert (WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+	}
+	
+	public void dissmissAlert (WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		alert.dismiss();
+	}
+	
+	public void sendkeysToAlert(WebDriver driver, String value) {
+		Alert alert = driver.switchTo().alert();
+		alert.sendKeys(value);
+	}
+/*
+
+executeJavascriptToElement(WebDriver driver, String locator)
+
+waitForControlPresence(WebDriver driver, String locator)
+
+waitForControlVisible(WebDriver driver, String locator)
+
+waitForControlClickable(WebDriver driver, String locator)
+
+waitForControlInvisible(WebDriver driver, String locator)
+
+waitForAlertPresence(WebDriver driver)
+
+uploadFileBySendkeys(WebDriver driver, String locator,String pathFile)
+
+uploadFileByRobot(WebDriver driver, String pathFile, String locator)
+acceptAlert(WebDriver driver)
+cancelAlert(WebDriver driver)
+getTextAlert(WebDriver driver)
+sendKeyAlert(WebDriver driver, String value)
+hoverMouse(WebDriver driver, String locator)*/
 	
 	public void quit(WebDriver driver) {
 		driver.quit();
