@@ -140,6 +140,12 @@ public class CommonFunctions {
 		Alert alert = driver.switchTo().alert();
 		alert.sendKeys(value);
 	}
+	/* ********************HOVER******************** */
+	public void hoverMouse(WebDriver driver, String locator) {
+	WebElement element = driver.findElement(By.xpath(locator));
+	Actions hover = new Actions(driver);
+	hover.moveToElement(element).perform();
+	}
 /*
 
 executeJavascriptToElement(WebDriver driver, String locator)
@@ -161,7 +167,7 @@ acceptAlert(WebDriver driver)
 cancelAlert(WebDriver driver)
 getTextAlert(WebDriver driver)
 sendKeyAlert(WebDriver driver, String value)
-hoverMouse(WebDriver driver, String locator)*/
+*/
 	
 	public void quit(WebDriver driver) {
 		driver.quit();
