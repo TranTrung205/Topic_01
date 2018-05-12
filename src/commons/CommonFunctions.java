@@ -76,10 +76,20 @@ public class CommonFunctions {
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
 	}
-	public void hoverToElement(WebDriver driver, String locator) {
-		WebElement element = driver.findElement(By.xpath(locator));
-		Actions hover = new Actions(driver);
-		hover.moveToElement(element).perform();
+	
+	/* ********************Windows******************** */
+	public void parentWindowID(WebDriver driver) {
+		String parentID = driver.getWindowHandle();
+	}
+	
+	public void switchToWindowByID(WebDriver driver, String parent) {
+        Set<String> allWindows = driver.getWindowHandles();
+        for (String runWindow : allWindows) {
+                    if (!runWindow.equals(parent)) {
+                                driver.switchTo().window(runWindow);
+                                break;
+                    }
+        }
 	}
 	
 	public void switchToWindowByTitle(WebDriver driver, String title) {
@@ -107,6 +117,7 @@ public class CommonFunctions {
          else
                     return false;
 }
+	/* ********************iFRAME******************** */
 	public void switchToiFrame(WebDriver driver, String locator) {
 		WebElement element= driver.findElement(By.xpath(locator));
 		driver.switchTo().frame(element);
@@ -145,6 +156,8 @@ public class CommonFunctions {
 	WebElement element = driver.findElement(By.xpath(locator));
 	Actions hover = new Actions(driver);
 	hover.moveToElement(element).perform();
+	
+	
 	}
 /*
 
@@ -163,10 +176,7 @@ waitForAlertPresence(WebDriver driver)
 uploadFileBySendkeys(WebDriver driver, String locator,String pathFile)
 
 uploadFileByRobot(WebDriver driver, String pathFile, String locator)
-acceptAlert(WebDriver driver)
-cancelAlert(WebDriver driver)
-getTextAlert(WebDriver driver)
-sendKeyAlert(WebDriver driver, String value)
+
 */
 	
 	public void quit(WebDriver driver) {
