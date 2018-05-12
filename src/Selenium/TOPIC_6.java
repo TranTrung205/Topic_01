@@ -13,7 +13,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TOPIC_6 {
+import com.thoughtworks.selenium.webdriven.commands.Open;
+
+import commons.CommonFunctions;
+
+public class TOPIC_6 extends CommonFunctions {
 	WebDriver driver;
 
 	@BeforeClass
@@ -22,15 +26,17 @@ public class TOPIC_6 {
 
 	}
 
-	@Test (enabled = false)
+	@Test (enabled = true)
 	public void TC_01() throws Exception {
-		driver.navigate().to("http://daominhdam.890m.com");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+//		driver.navigate().to("http://daominhdam.890m.com");
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		driver.manage().window().maximize();
+		openURL(driver, "http://daominhdam.890m.com");
 
-		WebElement hoverMeLink = driver.findElement(By.xpath("//*[contains(text(),'Hover over me')]"));
-		Actions hover = new Actions(driver);
-		hover.moveToElement(hoverMeLink).perform();
+//		WebElement hoverMeLink = driver.findElement(By.xpath("//*[contains(text(),'Hover over me')]"));
+//		Actions hover = new Actions(driver);
+//		hover.moveToElement(hoverMeLink).perform();
+		hoverMouse(driver, "//*[contains(text(),'Hover over me')]");
 		Thread.sleep(3000);
 
 		WebElement hooray = driver.findElement(By.xpath("//div[@class='tooltip-inner']"));
@@ -41,7 +47,7 @@ public class TOPIC_6 {
 
 	}
 
-	@Test
+	@Test (enabled = false)
 	public void TC_02() throws Exception {
 		driver.navigate().to("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -53,6 +59,7 @@ public class TOPIC_6 {
 
 	}
 
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
