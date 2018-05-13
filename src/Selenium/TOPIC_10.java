@@ -47,22 +47,27 @@ public class TOPIC_10 extends CommonFunctions{
 		
 //		WebDriverWait wait = new WebDriverWait(driver, 15);
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
-		waitForControlVisible(driver, locator);
+		waitForControlVisible(driver, "//*[@id='ctl00_ContentPlaceholder1_ctl00_ContentPlaceholder1_RadCalendar1Panel']");
 		
 		
-		wait.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//*[@id='ctl00_ContentPlaceholder1_ctl00_ContentPlaceholder1_RadCalendar1Panel']")));
-		WebElement textDayBefore = driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceholder1_Label1']"));
-		Assert.assertEquals("No Selected Dates to display.", textDayBefore.getText().trim());
+//		wait.until(ExpectedConditions.presenceOfElementLocated(
+//				By.xpath("//*[@id='ctl00_ContentPlaceholder1_ctl00_ContentPlaceholder1_RadCalendar1Panel']")));
+		
+		
+//		WebElement textDayBefore = driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceholder1_Label1']"));
+		Assert.assertEquals("No Selected Dates to display.", getTextElements(driver, "//*[@id='ctl00_ContentPlaceholder1_Label1']").trim());
 
-		WebElement day = driver.findElement(By.xpath("//a[contains(text(),'12')]"));
-		day.click();
+//		WebElement day = driver.findElement(By.xpath("//a[contains(text(),'12')]"));
+//		day.click();
+		clickToElements(driver, "//a[contains(text(),'12')]");
 
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='raDiv']")));
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//*[contains(@class,'rcSelected')]//a[text()='12']")));
-		WebElement textDayAfter = driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceholder1_Label1']"));
-		Assert.assertEquals("Tuesday, December 12, 2017", textDayAfter.getText().trim());
+//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='raDiv']")));
+		waitForControlInvisible(driver, "//div[@class='raDiv']");
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'rcSelected')]//a[text()='12']")));
+		waitForControlVisible(driver, "//*[contains(@class,'rcSelected')]//a[text()='12']");
+		
+//		WebElement textDayAfter = driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceholder1_Label1']"));
+		Assert.assertEquals("Tuesday, December 12, 2018", getTextElements(driver, "//*[@id='ctl00_ContentPlaceholder1_Label1']").trim());
 
 	}
 
