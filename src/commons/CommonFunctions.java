@@ -71,10 +71,43 @@ public class CommonFunctions {
 		WebElement element = driver.findElement(By.xpath(locator));
 		return element.isDisplayed();
 	}
-	public void executeJavascript(WebDriver driver, String locator) {
+	/* ********************JAVASCRIPT******************** */
+	
+	public void JavaScriptclickElements(WebDriver driver, String locator) {
 		WebElement element = driver.findElement(By.xpath(locator));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
+	}
+	
+	public String javaScriptGetDomain(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		return executor.executeScript("return document.domain").toString();
+		
+	}
+	
+	public String javaScriptGetUrl(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		return executor.executeScript("return document.URL").toString();
+	}
+	
+	public String getInnerTextJavascript(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		return executor.executeScript("return document.documentElement.innerText").toString();
+	}
+	
+	public String getTitleJavascript(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		return  executor.executeScript("return document.title").toString();
+	}
+	
+	public void scrollToBottomPage(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+	
+	public void navigateToAnothePageJavascript(WebDriver driver) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("window.location = string ");
 	}
 	
 	/* ********************Windows******************** */
