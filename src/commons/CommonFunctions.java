@@ -14,7 +14,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
@@ -204,7 +206,7 @@ public class CommonFunctions {
 	element.sendKeys(pathFile);
 	}
 	/* ********************UPLOAD BY ROBOT******************** */
-	public void uploadFileByRobot(WebDriver driver, String pathFile, String locator) throws AWTException {
+	public void uploadFileByRobot(WebDriver driver, String pathFile, String locator) throws AWTException, InterruptedException {
 		//Specify the file location with extension
 		StringSelection select = new StringSelection(pathFile);
 
@@ -212,10 +214,11 @@ public class CommonFunctions {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(select, null);
 
 		//Click
-		driver.findElement(By.className(locator)).click();
+//		driver.findElement(By.className(locator)).click();
+		driver.findElement(By.className("fileinput-button")).click();
 
 		Robot robot = new Robot();
-	
+		Thread.sleep(1000);
 
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
@@ -225,13 +228,19 @@ public class CommonFunctions {
 
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_V);
-		
+		Thread.sleep(1000);
+
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
+	
+	/* ********************WAIT******************** */
+
+		
+	
 /*
 
-executeJavascriptToElement(WebDriver driver, String locator)
+
 
 waitForControlPresence(WebDriver driver, String locator)
 
