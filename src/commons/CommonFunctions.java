@@ -1,5 +1,10 @@
 package commons;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.datatransfer.StringSelection;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+
+
 
 public class CommonFunctions {
 
@@ -190,7 +197,37 @@ public class CommonFunctions {
 	Actions hover = new Actions(driver);
 	hover.moveToElement(element).perform();
 	
+	}
+	/* ********************UPLOAD BY SENDKEY******************** */
+	public void uploadFileBySendkeys(WebDriver driver, String locator,String pathFile) {
+	WebElement element = driver.findElement(By.xpath(locator));
+	element.sendKeys(pathFile);
+	}
+	/* ********************UPLOAD BY ROBOT******************** */
+	public void uploadFileByRobot(WebDriver driver, String pathFile, String locator) throws AWTException {
+		//Specify the file location with extension
+		StringSelection select = new StringSelection(pathFile);
+
+		//Copy to clipboard
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(select, null);
+
+		//Click
+		driver.findElement(By.className(locator)).click();
+
+		Robot robot = new Robot();
 	
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_V);
+		
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
 /*
 
@@ -206,9 +243,9 @@ waitForControlInvisible(WebDriver driver, String locator)
 
 waitForAlertPresence(WebDriver driver)
 
-uploadFileBySendkeys(WebDriver driver, String locator,String pathFile)
 
-uploadFileByRobot(WebDriver driver, String pathFile, String locator)
+
+
 
 */
 	
