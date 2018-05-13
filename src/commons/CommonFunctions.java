@@ -214,7 +214,7 @@ public class CommonFunctions {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(select, null);
 
 		//Click
-		driver.findElement(By.xpath(locator));
+		driver.findElement(By.xpath(locator)).click();
 
 		Robot robot = new Robot();
 		Thread.sleep(1000);
@@ -239,7 +239,7 @@ public class CommonFunctions {
 		
 		WebDriverWait wait = new WebDriverWait(driver, timeouts);
 		By by = By.xpath(locator);
-		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		
 	}	
 	public void waitForControlInvisible(WebDriver driver, String locator) {
