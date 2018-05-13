@@ -67,7 +67,7 @@ public class TOPIC_10 extends CommonFunctions{
 		waitForControlVisible(driver, "//*[contains(@class,'rcSelected')]//a[text()='12']");
 		
 //		WebElement textDayAfter = driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceholder1_Label1']"));
-		Assert.assertEquals("Tuesday, December 12, 2018", getTextElements(driver, "//*[@id='ctl00_ContentPlaceholder1_Label1']").trim());
+		Assert.assertEquals("Saturday, May 12, 2018", getTextElements(driver, "//*[@id='ctl00_ContentPlaceholder1_Label1']").trim());
 
 	}
 
