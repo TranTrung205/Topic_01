@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class CommonFunctions {
-
+	private int timeouts = 20;
 	public void openURL(WebDriver driver, String url) {
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -214,8 +214,7 @@ public class CommonFunctions {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(select, null);
 
 		//Click
-//		driver.findElement(By.className(locator)).click();
-		driver.findElement(By.className("fileinput-button")).click();
+		driver.findElement(By.xpath(locator));
 
 		Robot robot = new Robot();
 		Thread.sleep(1000);
@@ -236,7 +235,20 @@ public class CommonFunctions {
 	
 	/* ********************WAIT******************** */
 
+	public void waitForControlVisible(WebDriver driver, String locator) {
 		
+		WebDriverWait wait = new WebDriverWait(driver, timeouts);
+		By by = By.xpath(locator);
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+		
+	}	
+	public void waitForControlInvisible(WebDriver driver, String locator) {
+		
+		WebDriverWait wait = new WebDriverWait(driver, timeouts);
+		By by = By.xpath(locator);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+		
+	}	
 	
 /*
 

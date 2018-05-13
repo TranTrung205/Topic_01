@@ -14,7 +14,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TOPIC_10 {
+import commons.CommonFunctions;
+
+public class TOPIC_10 extends CommonFunctions{
 	WebDriver driver;
 
 	@BeforeClass
@@ -23,12 +25,13 @@ public class TOPIC_10 {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void TC_01() throws Exception {
 
-		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+//		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		driver.manage().window().maximize();
+		openURL(driver, "http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.findElement(By.xpath(".//*[contains(text(),'Start')]")).click();
 		String text = driver.findElement(By.xpath("//div[@id='finish']//*[contains(text(),'Hello World!')]")).getText();
 		Assert.assertEquals("Hello World!", text);
@@ -37,13 +40,14 @@ public class TOPIC_10 {
 	@Test
 	public void Testscript02_explicitWait() throws Exception {
 
-		driver.get(
-				"http://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+//		driver.get("http://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		driver.manage().window().maximize();
+		openURL(driver, "http://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
 		
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+//		WebDriverWait wait = new WebDriverWait(driver, 15);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+		waitForControlVisible(driver, locator);
 		
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(
